@@ -10,4 +10,7 @@ public class HomeController {
 	public String homec() {
 		return "Home.jsp";
 	}
+	public String homec123() {
+		return "Home.jsp";
+	}
 }
