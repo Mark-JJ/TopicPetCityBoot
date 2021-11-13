@@ -10,7 +10,7 @@ public class DataBaseProperties {
 	private String url;
 	private String username;
 	private String password;
-	123
+	
 	public String getDrivername() {
 		return drivername;
 	}
