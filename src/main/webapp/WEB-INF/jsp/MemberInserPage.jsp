@@ -4,131 +4,240 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>新增會員資料</title>
 <style>
-form {
-	margin: 0 auto;
-	width: 600px;
+body{
+	margin:0;
+	color:#6a6f8c;
+	background:#c8c8c8;/*大背景*/
+	font:600 16px/18px 'Open Sans',sans-serif;
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+.login-wrap{
+	width:100%;
+	margin:auto;
+	max-width:525px;
+	min-height:850px;
+	position:relative;
+/*  	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;  */
+	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:90px 70px 50px 70px;
+	background:rgba(40,57,101,.9);/*內框顏色*/
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	transform:rotateY(180deg);
+	backface-visibility:hidden;
+	transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+	display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+	text-transform:uppercase;
+}
+.login-html .tab{
+	font-size:18px;
+	margin-right:15px;
+	padding-bottom:5px;
+	margin:0 15px 10px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:#fff;
+	border-color:#1161ee;
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	perspective:1000px;
+	transform-style:preserve-3d;
+}
+.login-form .group{
+	margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+	width:100%;
+	color:#fff;
+	display:block;
+}
+.login-form .group .input,
+.login-form .group .button{
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group input[data-type="password"]{
+	text-security:circle;
+	-webkit-text-security:circle;
+}
+.login-form .group .label{
+	color:#aaa;
+	font-size:12px;
+}
+.login-form .group .button{
+	background:#1161ee;
+}
+.login-form .group label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+	top:6px;
+	right:0;
+	transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+	color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+	background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+	transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+	transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	transform:rotate(0);
 }
 
-button {
-	margin: 0 auto;
-	width: 600px;
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
 }
-</style>
+.foot-lnk{
+	text-align:center;
+}
+ </style>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Login</title>
 </head>
-
-<body background="https://drimg01.scbao.com/160906/330613-160Z609251769.jpg" onload="javascript:document.insertMemberFormA.mId.focus();">
-	<p />
+<body>
+<h1></h1>
 <form action="MemberInserSuccess.controller" method="POST" enctype="multipart/form-data">
-		<table border="1">
-			<thead>
-				<tr bgcolor='#C4E1FF'>
-					<th height="60" colspan="2" align="center">新增會員資料</th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">mail:</td>
-					<td width="600" height="40" align="left"><input id="Q1"
-						style="text-align: left" name="mail" value="${param.mId}"
-						type="text" size="20">
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.id}</div>
-					</td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">密碼:</td>
-					<td width="600" height="40" align="left"><input id="Q2"
-						style="text-align: left" name="password" value="${param.pswd}"
-						type="text" size="20">
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.password}</div>
-					</td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">電話:</td>
-					<td width="600" height="40" align="left"><input name="phone"
-						value="${param.mName}" type="text" size="20" id="Q3">
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.name}</div>
-					</td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">姓名:</td>
-					<td width="600" height="40" align="left"><input
-						name="name" value="${param.mAddress}" type="text" size="20"
-						id="Q4">
-						<div style="color: #FF0000; font-size: x-small; display: inline">${ErrorMsg.address}</div>
-					</td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">身分證字號:</td>
-					<td width="600" height="40" align="left"><input name="numberID"
-						value="${param.mPhone}" type="text" size="20" id="Q5">
-						<font color='blue' size="-1">&nbsp;&nbsp;(選填)認養寵物使用</font></td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">生日:</td>
-					<td width="600" height="40" align="left"><input
-						name="birthday" value="${param.mBirthday}" type="text" size="20"
-						id="Q6"> <font color='blue' size="-1">&nbsp;&nbsp;格式為yyyy-MM-dd</font>
-						<div style="color: #FF0000; font-size: x-small; display: inline">${ErrorMsg.bday}</div>
-					</td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">地址:</td>
-					<td width="600" height="40" align="left"><input name="address"
-						value="${param.mWeight}" type="text" size="20" id="Q7">
-						<div style="color: #FF0000; font-size: x-small; display: inline">${ErrorMsg.weight}</div>
-					</td>
-				</tr>
-				<tr bgcolor='#C4E1FF'>
-					<td width="120" height="40">性別:</td>
-					<td width="600" height="40" align="left"><input name="gender"
-						type="text" size="20" id="Q8">
-						<div style="color: #FF0000; font-size: x-small; display: inline">${ErrorMsg.picture}</div>
-					</td>
-				</tr>
-
-				<tr bgcolor='#C4E1FF'>
-					<td height="50" colspan="2" align="center"><input
-						type="submit" value="送出"></td>
-				</tr>
-
-			</tbody>
-		</table>
-
-		<div style="color: #FF0000; display: inline">${ErrorMsg.exception}</div>
-	</form>
-	<hr>
-
-	<table border="1" align="center">
-		<thead>
-			<tr bgcolor='#D9FFFF'>
-				<th height="60" colspan="2" align="center">自動填入商品資料</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr bgcolor='#D9FFFF'>
-				<td width="600" height="40" align="center">
-					<button class="C1" style="width: 100px; height: 30px;">資料1</button>
-					<button class="C2" style="width: 100px; height: 30px;">資料2</button>
-					<button class="C3" style="width: 100px; height: 30px;">資料3</button>
-					<button class="C4" style="width: 100px; height: 30px;">資料4</button>
-					<button class="C5" style="width: 100px; height: 30px;">資料5</button>
-				</td>
-			</tr>
-		<tbody>
-	</table>
-	<table border='1' align="center" bgcolor='#CECEFF'>
-		<th><a href="<c:url value='/index.jsp' />">回首頁</a></th>
-
-	</table>
+	<div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">會員資料</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<div class="group">
+					<label for="pass" class="label" >Email </label>
+					<input id="Q1" type="text" class="input"  name="mail">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.mail}</div>
+				</div>
+				<div class="group">
+					<label for="pass" class="label" >密碼</label>
+					<input id="Q2" type="password" class="input" data-type="password" name="password">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.password}</div>
+				</div>
+        <div class="group">
+					<label for="pass" class="label" >手機 </label>
+					<input id="Q3" type="text" class="input"  name="phone">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.phone}</div>
+				</div>
+		<div class="group">
+					<label for="pass" class="label" >姓名 </label>
+					<input id="Q4" type="text" class="input"  name="name">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.name}</div>
+				</div>
+        <div class="group">
+					<label for="pass" class="label" >身分證  </label>
+					<input id="Q5" type="text" class="input"  name="numberID">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.numberID}</div>
+				</div>
+        <div class="group">
+					<label for="pass" class="label" >生日 </label>
+					<input id="Q6" type="Date" class="input"  name="birthday">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.bday}</div>
+				</div>
+        <div class="group">
+					<label for="pass" class="label" >住址 </label>
+					<input id="Q7" type="text" class="input"  name="address">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.address}</div>
+				</div>
+        <div class="group">
+					<label for="pass" class="label" >性別(選填) </label>
+					<input id="Q8" type="text" class="input"  name="gender">
+          <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.gender}</div>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="送出">
+				</div>
+				<div class="hr"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+<table border="1" align="center">
+  <thead>
+    <tr bgcolor='#D9FFFF'>
+      <th height="60" colspan="2" align="center">自動填入商品資料</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr bgcolor='#D9FFFF'>
+      <td width="600" height="40" align="center">
+        <button class="C1" style="width: 100px; height: 30px;">資料1</button>
+        <button class="C2" style="width: 100px; height: 30px;">資料2</button>
+        <button class="C3" style="width: 100px; height: 30px;">資料3</button>
+        <button class="C4" style="width: 100px; height: 30px;">資料4</button>
+        <button class="C5" style="width: 100px; height: 30px;">資料5</button>
+      </td>
+    </tr>
+  <tbody>
+</table>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-
-
 	//自動填入資料
 	$(document).ready(function() {
 		$(".C1").click(function() {
@@ -192,5 +301,4 @@ button {
 	});
 	
 </script>
-
 </html>

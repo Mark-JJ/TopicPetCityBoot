@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Entity @Table(name = "MemberData")
 @Component
 public class Member {
-	@Id @Column(name = "ID")
+	@Id @Column(name = "memberID ")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String mail;
