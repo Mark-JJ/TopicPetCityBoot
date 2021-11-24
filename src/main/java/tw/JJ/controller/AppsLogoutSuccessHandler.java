@@ -15,13 +15,13 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import tw.JJ.model.MemberService;
+import tw.JJ.model.AccountService;
 
 @Component
 public class AppsLogoutSuccessHandler implements LogoutSuccessHandler {
 	
 	@Autowired
-	MemberService sysService;
+	AccountService sysService;
 	
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
@@ -34,7 +34,7 @@ public class AppsLogoutSuccessHandler implements LogoutSuccessHandler {
 		  
 		  HttpSession session = request.getSession();
 	        if (session != null){
-	            session.removeAttribute("memberID");
+	            session.removeAttribute("managerID");
 	        }
 
 	}

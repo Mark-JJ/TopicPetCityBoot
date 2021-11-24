@@ -12,13 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import tw.JJ.controller.AppsAuthenticationSuccessHandler;
 import tw.JJ.controller.AppsLogoutSuccessHandler;
 import tw.JJ.model.AccountDetailsService;
-import tw.JJ.model.MemberDetailsService;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	private MemberDetailsService aDS;
-//	private AccountDetailsService aDS;
+	private AccountDetailsService aDS;
 	@Autowired
 	AppsAuthenticationSuccessHandler appsAuthenticationSuccessHandler;
 	@Autowired
@@ -36,10 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//驗證方法
 		.authorizeRequests()
 		//user底下的都要驗證
-		.antMatchers(HttpMethod.GET,"/member/**").authenticated()
+		.antMatchers(HttpMethod.GET,"/manager/**").authenticated()
 		//其餘的GET方法都給過
 		.antMatchers(HttpMethod.GET).permitAll()
-		.antMatchers(HttpMethod.POST,"/member/**").authenticated()
+		.antMatchers(HttpMethod.POST,"/manager/**").authenticated()
 		.antMatchers(HttpMethod.POST).permitAll()
 		//前面沒寫到的，都要驗證
 		.anyRequest().authenticated()
@@ -52,8 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		//關掉csrf(跨站請求偽造)安全驗證
 		.csrf().disable()
 		//自訂義登入畫面
-		.formLogin().loginPage("/login/page1")
-//		.usernameParameter("mail")
+		.formLogin().loginPage("/login/page")
 		.defaultSuccessUrl("/login/welcome")
 		.permitAll()
 		.successHandler(appsAuthenticationSuccessHandler)

@@ -37,7 +37,7 @@ public class MemberUpdateController {
 	}
 	@PostMapping(path = "/MemberUpdateSuccess.controller")
 	public String updateAction2(
-			@RequestParam("upid")String upid,
+			@RequestParam("upid")int upid,
 			@RequestParam("mail") String mail, 
 			@RequestParam("password") String password,
 			@RequestParam("phone") String phone,

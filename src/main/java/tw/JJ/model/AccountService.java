@@ -25,6 +25,10 @@ public class AccountService {
 		if(oa.isEmpty()) {
 			throw new UserNotFoundException("找不到管理者帳號");
 		}
+//		ServletRequest session = null;
+//		HttpServletRequest request = null;
+//		HttpSession session = request.getSession();
+//		session.setAttribute("managerID", managerName);
 		return oa.get();
 	}
 	

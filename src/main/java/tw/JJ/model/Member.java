@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 public class Member {
 	@Id @Column(name = "memberID ")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	private String mail;
 	private String password;
 	private String phone;
@@ -42,7 +42,7 @@ public class Member {
 		this.address = address;
 		this.gender = gender;
 	}
-	public Member(String id,String mail, String password, String phone, String name, String numberID, String birthday,
+	public Member(int id,String mail, String password, String phone, String name, String numberID, String birthday,
 			String address, String gender) {
 		this.id = id;
 		this.mail = mail;
@@ -70,12 +70,12 @@ public class Member {
 	}
 
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

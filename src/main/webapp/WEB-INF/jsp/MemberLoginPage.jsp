@@ -160,6 +160,29 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 <h1></h1>
+		<%
+        String rqname = request.getParameter("username");
+        session.setAttribute("managerID", rqname);
+        %>
+<!-- <form action="/login/page" method="post"> -->
+<!--     <table> -->
+<!--        <tr> -->
+<!--           <td>UserName:</td> -->
+<!--           <td><input type="text" name="username"/></td> -->
+<!--        </tr> -->
+<!--        <tr> -->
+<!--           <td>Password:</td> -->
+<!--           <td><input type="password" name="password"/></td> -->
+<!--        </tr> -->
+<!--        <tr> -->
+<!--           <td colspan="2"><input type="checkbox" name="remember-me">RememberMe</td> -->
+<!--        </tr> -->
+<!--        <tr> -->
+<!--           <td colspan="2"><button type="submit" value="login">Login</button></td> -->
+<!--        </tr>        -->
+<!--     </table> -->
+    
+<!-- </form> -->
 
 <form action="/login/page" method="post">
 	<div class="login-wrap">
@@ -170,7 +193,7 @@ a{color:inherit;text-decoration:none}
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="user" class="label" >mail</label>
+					<label for="user" class="label" >Username</label>
 					<input id="user" type="text" class="input" name="username">
 				</div>
 				<div class="group">

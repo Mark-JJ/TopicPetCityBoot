@@ -23,4 +23,7 @@ public class AccountDetailsService implements UserDetailsService{
 		Account ac = aService.findBymanagerID(username);
 		return new User(ac.getManagerName(),ac.getManagerPw(),Collections.emptyList());
 	}
+//	public void AccountDetailsService(@RequestParam("username")String username,HttpSession session) {
+//		session.setAttribute("managerID", username);
+//	}
 }
