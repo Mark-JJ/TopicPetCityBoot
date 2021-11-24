@@ -68,7 +68,7 @@ public class EmailRegisterController {
 		senderService.sendEmail(emailAddress, "歡迎加入會員", "請於30分鐘內按下列超連結: " + 
 		        link + "<br>");
 		model.addAttribute("emailAddress", emailAddress);
-		return "/mail/registerSuccess";
+		return "/mail/registerDemo";
 	}
 
 	@GetMapping("/confirmedMail/{random}")
