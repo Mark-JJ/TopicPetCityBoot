@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.JJ.model.EmailSenderService;
 import tw.JJ.model.IEmailSenderService;
+import tw.JJ.model.Member;
+import tw.JJ.model.MemberService;
 import tw.JJ.util.RandomString;
 
 @Controller
+@SessionAttributes({"member"})
 public class EmailRegisterController {
-
+	@Autowired
+	private MemberService mService;
 	String contextPath ;
 	final String requestPath = "/confirmedMail";
 	                             
@@ -45,7 +50,7 @@ public class EmailRegisterController {
 		return "/mail/registerDemo";
 	}
 
-	@PostMapping("/register")
+	@PostMapping("/register2")
 	public String register(Model model, HttpSession session, 
 			@RequestParam String emailAddress) {
 		// 註冊的前置作業，你要自行完成
@@ -77,6 +82,9 @@ public class EmailRegisterController {
 			String value = map.get(random);
 			if (value != null && value.equals(random) ) {
 				result = "電子郵件地址認證成功，random=" + random ;
+				Member mb = (Member)session.getAttribute("member");
+				System.out.println("######QQQQ"+mb);
+				mService.inser(mb);
 			}
 		}
 		System.out.println("result=" + result);

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.JJ.model.Member;
 import tw.JJ.model.MemberService;
@@ -20,16 +21,12 @@ import tw.JJ.model.MemberService;
 
 
 @Controller
+@SessionAttributes({"member"})
 public class MemberInserController {
 	@Autowired
 	private MemberService mService;
 	@GetMapping(path = "/MemberInserPage.controller")
     public String memberinserPage(HttpSession session) {
-//		String Myname = (String) session
-//		System.out.println("###########"+managerID);
-//		if(managerID == null) {
-//			return "MemberLoginPage";
-//		}
     	return "MemberInserPage";
     }
 	
@@ -43,7 +40,7 @@ public class MemberInserController {
 			@RequestParam("birthday") String birthday,
 			@RequestParam("address") String address,
 			@RequestParam("gender") String gender,
-			Model m) {
+			Model m,HttpSession session) {
 		Map<String, String> errors = new HashMap<String, String>(); 
 		m.addAttribute("errors", errors);
 		if(mail==null || mail.length()==0) {
@@ -61,10 +58,11 @@ public class MemberInserController {
 		Member mb = new Member(mail,password,phone,name,numberID,birthday,address,gender);
 		String encodePwd = new BCryptPasswordEncoder().encode(mb.getPassword());
 		mb.setPassword(encodePwd);
-		Member newmeb = mService.inser(mb);
+//		Member newmeb = mService.inser(mb);
 		m.addAttribute("mail",mail);
 		m.addAttribute("password",password);
-		return "MemberInserSuccess";
+		session.setAttribute("member", mb);
+		return "/mail/registerDemo";
 	}
 
 }
