@@ -15,17 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 @Transactional
-public class AccountDetailsService implements UserDetailsService{
+public class MemberDetailsService implements UserDetailsService{
 	@Autowired
-	private AccountService aService;
+	private MemberService aService;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Account ac = aService.findBymanagerName(username);
+		Member ac = aService.findBymail(username);
 		System.out.println("QQQQQQ"+ac);
-		System.out.println(ac.getManagerName());
-		return new User(ac.getManagerName(),ac.getManagerPw(),Collections.emptyList());
+		System.out.println(ac.getMail());
+		return new User(ac.getMail(),ac.getPassword(),Collections.emptyList());
 	}
-//	public void AccountDetailsService(@RequestParam("username")String username,HttpSession session) {
-//		session.setAttribute("managerID", username);
-//	}
+
 }

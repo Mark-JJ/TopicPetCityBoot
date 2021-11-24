@@ -15,15 +15,15 @@ public class Account {
 
 	@Id @Column(name = "MANAGERID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String managerID;
+	private int managerID;
 	private String managerName;
 	private String managerPw;
 	
 	
-	public String getManagerID() {
+	public int getManagerID() {
 		return managerID;
 	}
-	public void setManagerID(String managerID) {
+	public void setManagerID(int managerID) {
 		this.managerID = managerID;
 	}
 	public String getManagerName() {

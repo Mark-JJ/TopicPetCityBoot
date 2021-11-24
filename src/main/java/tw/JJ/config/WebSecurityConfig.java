@@ -12,11 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import tw.JJ.controller.AppsAuthenticationSuccessHandler;
 import tw.JJ.controller.AppsLogoutSuccessHandler;
 import tw.JJ.model.AccountDetailsService;
+import tw.JJ.model.MemberDetailsService;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	private AccountDetailsService aDS;
+	private MemberDetailsService aDS;
 	@Autowired
 	AppsAuthenticationSuccessHandler appsAuthenticationSuccessHandler;
 	@Autowired

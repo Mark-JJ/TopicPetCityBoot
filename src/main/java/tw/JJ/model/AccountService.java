@@ -20,15 +20,11 @@ public class AccountService {
 	@Autowired
 	private AccountRepository aRps;
 	
-	public Account findBymanagerID(String managerName){
+	public Account findBymanagerName(String managerName){
 		Optional<Account> oa = aRps.findBymanagerName(managerName);
 		if(oa.isEmpty()) {
 			throw new UserNotFoundException("找不到管理者帳號");
 		}
-//		ServletRequest session = null;
-//		HttpServletRequest request = null;
-//		HttpSession session = request.getSession();
-//		session.setAttribute("managerID", managerName);
 		return oa.get();
 	}
 	
