@@ -20,7 +20,7 @@ import tw.JJ.model.MemberService;
 
 
 @Controller
-@RequestMapping(path = "/manager")
+@RequestMapping(path = "/member")
 public class MemberIndexController {
 	@Autowired
 	private MemberService mService;

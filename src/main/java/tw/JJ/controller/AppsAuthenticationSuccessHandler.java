@@ -15,14 +15,14 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import tw.JJ.model.Account;
-import tw.JJ.model.AccountService;
+import tw.JJ.model.Member;
+import tw.JJ.model.MemberService;
 
 @Component
 public class AppsAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 	
 	@Autowired
-	AccountService sysService;
+	MemberService sysService;
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -32,11 +32,11 @@ public class AppsAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		   // 將 Object 轉換成 Map
 		   ObjectMapper oMapper = new ObjectMapper();
 		   Map<String,String> authDetail = oMapper.convertValue(authentication.getDetails(),Map.class);
-		   Account whois = sysService.setWhoIsOnline( authDetail , authentication.getName());
+		   Member whois = sysService.setWhoIsOnline( authDetail , authentication.getName());
 		   
 		   System.out.println("EEEE"+authDetail);
 		   System.out.println("AAAAA"+authentication.getName());
-		   session.setAttribute("managerID", authentication.getName());
+		   session.setAttribute("memberID", authentication.getName());
 		  }
 		  if (authentication.isAuthenticated()) {
 		   response.sendRedirect("/login/welcome");
