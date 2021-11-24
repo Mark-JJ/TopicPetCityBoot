@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@ a{color:inherit;text-decoration:none}
 	width:100%;
 	margin:auto;
 	max-width:525px;
-	min-height:670px;
+	min-height:400px;
 	position:relative;
 /*  	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;  */
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
@@ -53,7 +54,7 @@ a{color:inherit;text-decoration:none}
 	text-transform:uppercase;
 }
 .login-html .tab{
-	font-size:22px;
+	font-size:18px;
 	margin-right:15px;
 	padding-bottom:5px;
 	margin:0 15px 10px 0;
@@ -160,63 +161,41 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 <h1></h1>
-
-<form action="/login/page" method="post">
+<form action="/MemberForgetSuccess.controller" method="POST" enctype="multipart/form-data">
 	<div class="login-wrap">
 	<div class="login-html">
-		<img src="/uploaded/car.png" width="100" height="100">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">會員登入</label>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">修改密碼</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="user" class="label" >Username</label>
-					<input id="user" type="text" class="input" name="username">
-				</div>
-				<div class="group">
-					<label for="pass" class="label" >Password</label>
-					<input id="pass" type="password" class="input" data-type="password" name="password">
-				</div>
-				<div class="group">
-					<input id="check" type="checkbox" class="check" checked name="remember-me">
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Sign In">
-				</div>
-				<div class="hr"></div>
-				<div class="foot-lnk">
-					<a href="<c:url value='/MemberInserPage.controller' />">加入會員 </a> <a href="/MemberForgetPage.controller">忘記密碼 </a>
-				</div>
-			</div>
-<!-- 			<div class="sign-up-htm"> -->
-<!-- 				<div class="group"> -->
-<!-- 					<label for="user" class="label">Username</label> -->
-<!-- 					<input id="user" type="text" class="input"> -->
-<!-- 				</div> -->
-<!-- 				<div class="group"> -->
-<!-- 					<label for="pass" class="label">Password</label> -->
-<!-- 					<input id="pass" type="password" class="input" data-type="password"> -->
-<!-- 				</div> -->
-<!-- 				<div class="group"> -->
-<!-- 					<label for="pass" class="label">Repeat Password</label> -->
-<!-- 					<input id="pass" type="password" class="input" data-type="password"> -->
-<!-- 				</div> -->
-<!-- 				<div class="group"> -->
-<!-- 					<label for="pass" class="label">Email Address</label> -->
-<!-- 					<input id="pass" type="text" class="input"> -->
-<!-- 				</div> -->
-<!-- 				<div class="group"> -->
-<!-- 					<input type="submit" class="button" value="Sign Up"> -->
-<!-- 				</div> -->
-<!-- 				<div class="hr"></div> -->
-<!-- 				<div class="foot-lnk"> -->
-<!-- 					<label for="tab-1">Already Member?</a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-		</div>
+					<label for="pass" class="label" >Email </label>
+					<input id="pass" type="text" class="input"  name="emailAddress" value="${forgetmail}" readonly unselectable="on">
+					<label for="pass" class="label" >新密碼 </label>
+					<input id="pass" type="text" class="input"  name="password" >
+	</div>
+	<div class="group">
+		<input type="submit" class="button" value="送出">
 	</div>
 </div>
+
 </form>
+
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+// 	//自動填入資料
+// 	$(document).ready(function() {
+// 		$(".button").click(function() {
+// 			var yes = confirm('確定mail正確嗎？');
+
+// 			if (yes) {
+// 				alert('寄信成功，請30分鐘內至信箱收件');
+// 			} else {
+// // 				this.form.action = "";
+// 				alert('取消寄信');
+// 			}
+// 		})
+// 	});
+</script>
 </html>

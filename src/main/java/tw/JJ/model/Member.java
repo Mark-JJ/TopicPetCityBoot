@@ -55,7 +55,11 @@ public class Member {
 		this.gender = gender;
 	}
 
-
+	public Member(int id,String mail, String password) {
+		this.id = id;
+		this.mail = mail;
+		this.password = password;
+	}
 	public Member(String mail, String password) {
 		this.mail = mail;
 		this.password = password;

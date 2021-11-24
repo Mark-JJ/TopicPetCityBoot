@@ -253,8 +253,8 @@ a{color:inherit;text-decoration:none}
 	});
 	$(document).ready(function() {
 		$(".C2").click(function() {
-			$("#Q1").val('QQ2@gmail.com');
-			$("#Q2").val('xQGDCzCp');
+			$("#Q1").val('mark34177@gmail.com');
+			$("#Q2").val('qazwsx');
 			$("#Q3").val('0953579487');
 			$("#Q4").val('海綿寶寶');
 			$("#Q5").val('S239712291');
