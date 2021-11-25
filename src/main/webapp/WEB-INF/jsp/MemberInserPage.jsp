@@ -265,7 +265,7 @@ a{color:inherit;text-decoration:none}
 	});
 	$(document).ready(function() {
 		$(".C3").click(function() {
-			$("#Q1").val('QQ3@gmail.com');
+			$("#Q1").val('jeff520sine@gmail.com');
 			$("#Q2").val('NhU64tYR');
 			$("#Q3").val('0927639144');
 			$("#Q4").val('歌集啦');

@@ -23,7 +23,7 @@ import tw.JJ.model.MemberService;
 import tw.JJ.util.RandomString;
 
 @Controller
-@SessionAttributes({"member"})
+//@SessionAttributes({"member"})
 public class EmailRegisterController {
 	@Autowired
 	private MemberService mService;
@@ -85,9 +85,12 @@ public class EmailRegisterController {
 			if (value != null && value.equals(random) ) {
 				result = "電子郵件地址認證成功，random=" + random ;
 				Member mb = (Member)session.getAttribute("member");
-				System.out.println("######QQQQ"+mb);
+				System.out.println("QQ#新增QQQQ"+mb);
 				mService.inser(mb);
+				System.out.println("QQ#新增成功QQQQ"+mb);
 				session.removeAttribute("member");
+//				session.invalidate();
+				System.out.println("QQ#清除成功QQQQ"+mb);
 			}
 		}
 		System.out.println("result=" + result);

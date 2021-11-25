@@ -21,7 +21,7 @@ import tw.JJ.model.MemberService;
 
 
 @Controller
-@SessionAttributes({"member"})
+//@SessionAttributes({"member"})
 public class MemberInserController {
 	@Autowired
 	private MemberService mService;
