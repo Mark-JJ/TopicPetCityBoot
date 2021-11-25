@@ -87,6 +87,7 @@ public class EmailRegisterController {
 				Member mb = (Member)session.getAttribute("member");
 				System.out.println("######QQQQ"+mb);
 				mService.inser(mb);
+				session.removeAttribute("member");
 			}
 		}
 		System.out.println("result=" + result);
@@ -117,6 +118,7 @@ public class EmailRegisterController {
 		senderService.sendEmail(emailAddress, "修改密碼", "請於30分鐘內按下列超連結: " + 
 		        link + "<br>");
 		session.setAttribute("forgetmail", emailAddress);
+		
 		return "/mail/MemberForgetPage";
 	}
 
@@ -147,6 +149,7 @@ public class EmailRegisterController {
 		String nps = new BCryptPasswordEncoder().encode(mb.getPassword());
 		mb.setPassword(nps);
 		mService.update(mb);
+		session.removeAttribute("randomCode");
 		return "/mail/MemberForgetSuccess";
 	}
 }

@@ -60,7 +60,6 @@ public class MemberInserController {
 		mb.setPassword(encodePwd);
 //		Member newmeb = mService.inser(mb);
 		m.addAttribute("mail",mail);
-		m.addAttribute("password",password);
 		session.setAttribute("member", mb);
 		return "/mail/registerDemo";
 	}
