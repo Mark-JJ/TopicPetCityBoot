@@ -146,7 +146,7 @@ public class EmailRegisterController {
 		
 		mService.findBymail(mail);
 		Member mb = mService.findBymail(mail);
-		String nps = new BCryptPasswordEncoder().encode(mb.getPassword());
+		String nps = new BCryptPasswordEncoder().encode(password);
 		mb.setPassword(nps);
 		mService.update(mb);
 		session.removeAttribute("randomCode");
