@@ -25,6 +25,7 @@ public class Member {
 	private String birthday;
 	private String address;
 	private String gender;
+	private String photo;
 
 
 	public Member() {
@@ -32,7 +33,7 @@ public class Member {
 
 
 	public Member(String mail, String password, String phone, String name, String numberID, String birthday,
-			String address, String gender) {
+			String address, String gender, String photo) {
 		this.mail = mail;
 		this.password = password;
 		this.phone = phone;
@@ -41,6 +42,7 @@ public class Member {
 		this.birthday = birthday;
 		this.address = address;
 		this.gender = gender;
+		this.photo = photo;
 	}
 	public Member(int id,String mail, String password, String phone, String name, String numberID, String birthday,
 			String address, String gender) {
@@ -161,6 +163,16 @@ public class Member {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+
+	public String getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	
 	

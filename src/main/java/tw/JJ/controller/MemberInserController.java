@@ -54,8 +54,8 @@ public class MemberInserController {
 		}
 		System.out.println("#########3");
 		//第二種方法
-		
-		Member mb = new Member(mail,password,phone,name,numberID,birthday,address,gender);
+		String photo = "login-icon.png";
+		Member mb = new Member(mail,password,phone,name,numberID,birthday,address,gender,photo);
 		String encodePwd = new BCryptPasswordEncoder().encode(mb.getPassword());
 		mb.setPassword(encodePwd);
 //		Member newmeb = mService.inser(mb);

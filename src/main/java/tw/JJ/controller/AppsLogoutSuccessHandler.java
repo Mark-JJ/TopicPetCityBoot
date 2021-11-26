@@ -35,7 +35,7 @@ public class AppsLogoutSuccessHandler implements LogoutSuccessHandler {
 		  
 		  HttpSession session = request.getSession();
 	        if (session != null){
-	            session.removeAttribute("managerID");
+	            session.removeAttribute("memberID");
 	        }
 
 	}

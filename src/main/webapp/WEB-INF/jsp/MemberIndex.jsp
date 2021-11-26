@@ -22,7 +22,7 @@ String managerID = (String) session.getAttribute("managerID");
 </head>
 
 <body background="https://drimg01.scbao.com/160906/330613-160Z609251769.jpg">
-<c:if test="${managerID == null}">
+<c:if test="${memberID == null}">
 	<c:redirect url="login/page" />
        <a href="login/page">
         <i class="tf-ion-android-person"></i>
@@ -34,16 +34,17 @@ String managerID = (String) session.getAttribute("managerID");
 <tr>
 <th colspan='8' bgcolor='#CECEFF'>
 <h1>管理者專區</h1>
-<h1>尊敬的${managerID}，您好</h1>
+<h1>尊敬的${mail}，您好</h1>
 
-<form method="POST">
-<input name="managerID" value="${managerID}"type="text">
-<a href="<c:url value='/MemberInserPage.controller' />"><h2>新增會員資料</h2></a><br>
+<form action="/MemberPhoto.controller" method="POST">
+<input name="mail" value="${mail}"type="text">
+	<button type="submit" class="btn btn-primary" align="center">會員大頭貼</button>
 </form>
 </th>
 </tr>
 <tr bgcolor='#CECEFF'>
 	<th>
+	<a href="<c:url value='/MemberPhoto.controller' />"><h2>會員大頭貼</h2></a><br>
 	<a href="<c:url value='/MemberInserPage.controller' />"><h2>新增會員資料</h2></a><br>
 	<a href="<c:url value='/MemberUpdatePage.controller' />"><h2>更新會員資料</h2></a><br>
 	<a href="<c:url value='/MemberDeletePage.controller' />"><h2>刪除會員資料</h2></a><br>

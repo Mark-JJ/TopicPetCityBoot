@@ -38,7 +38,9 @@ public class AppsAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		   
 		   System.out.println("EEEE"+authDetail);
 		   System.out.println("AAAAA"+authentication.getName());
-		   session.setAttribute("managerID", authentication.getName());
+		   System.out.println("BBBBB"+authentication.getClass());
+		   session.setAttribute("mail", authentication.getName());
+//		   session.setAttribute("memberID", authentication.getClass());
 		  }
 		  if (authentication.isAuthenticated()) {
 		   response.sendRedirect("/login/welcome");

@@ -8,5 +8,6 @@
 </head>
 <body>
   <img src="/uploaded/${fileName}">
+  <img src="/uploaded/${fileName}" class="img-circle">
 </body>
 </html>
