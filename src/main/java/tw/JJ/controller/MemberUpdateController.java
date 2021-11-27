@@ -26,6 +26,7 @@ public class MemberUpdateController {
 		m.addAttribute("memberAll",memberAll);
     	return "MemberUpdatePage";
     }
+	
 	@PostMapping(path = "/MemberUpdateAction.controller")
 	public String updateAction(@RequestParam("id")int id,Model m, HttpSession session) {
 		Member updateID = mService.findById(id);
@@ -55,5 +56,31 @@ public class MemberUpdateController {
 		List<Member> upacc = mService.findAll();
 		session.setAttribute("upacc", upacc);
 		return "MemberUpdateSuccess";
+	}
+	//New
+	@PostMapping(path = "/MemberNewUpdateAction.controller")
+    public String memberNewUpdatePage(@RequestParam("mail")String mail,Model m) {
+		Member mb = mService.findBymail(mail);
+		m.addAttribute("memberUpdate",mb);
+    	return "MemberNewUpdateAction";
+    }
+	@PostMapping(path = "/MemberNewUpdateSuccess.controller")
+	public String MemberNewUpdateSuccess(
+			@RequestParam("upid")int upid,
+			@RequestParam("mail") String mail, 
+			@RequestParam("password") String password,
+			@RequestParam("phone") String phone,
+			@RequestParam("name") String name,
+			@RequestParam("numberID") String numberID,
+			@RequestParam("birthday") String birthday,
+			@RequestParam("address") String address,
+			@RequestParam("gender") String gender,
+			Model m, HttpSession session) {
+		
+		Member mb = new Member(upid,mail,password,phone,name,numberID,birthday,address,gender);
+		Member newmeb = mService.update(mb);
+		m.addAttribute("memberUpdate",newmeb);
+		
+		return "MemberNewUpdateAction";
 	}
 }

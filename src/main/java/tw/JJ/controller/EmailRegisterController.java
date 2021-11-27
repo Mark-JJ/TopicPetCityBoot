@@ -147,7 +147,6 @@ public class EmailRegisterController {
 			@RequestParam("emailAddress") String mail,
 			@RequestParam("password") String password) {
 		
-		mService.findBymail(mail);
 		Member mb = mService.findBymail(mail);
 		String nps = new BCryptPasswordEncoder().encode(password);
 		mb.setPassword(nps);

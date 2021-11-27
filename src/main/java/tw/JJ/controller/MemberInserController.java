@@ -41,13 +41,27 @@ public class MemberInserController {
 			@RequestParam("address") String address,
 			@RequestParam("gender") String gender,
 			Model m,HttpSession session) {
+
+		
 		Map<String, String> errors = new HashMap<String, String>(); 
 		m.addAttribute("errors", errors);
 		if(mail==null || mail.length()==0) {
-			errors.put("name", "name is required");
+			errors.put("mail", "請輸入Email");
 		}
+
 		if(password==null || password.length()==0) {
-			errors.put("pwd", "user password is required");
+			errors.put("pwd", "請輸入密碼");
+		}
+		if(phone==null || phone.length()==0 || phone.length()>10) {
+			errors.put("phone", "請輸入正確的電話號碼,共十碼");
+		}
+		if(errors!=null && !errors.isEmpty()) {
+			return "MemberInserPage";
+		}
+		
+		Member checkmb = mService.findBymail(mail);
+		if(checkmb!=null) {
+			errors.put("mail", "該Email已有人使用，請重新輸入");
 		}
 		if(errors!=null && !errors.isEmpty()) {
 			return "MemberInserPage";

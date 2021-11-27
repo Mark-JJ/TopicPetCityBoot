@@ -16,13 +16,11 @@ padding: 30px
 </style>
 
 <title>期末專題</title>
-<%
-String managerID = (String) session.getAttribute("managerID");
-        %>
+
 </head>
 
 <body background="https://drimg01.scbao.com/160906/330613-160Z609251769.jpg">
-<c:if test="${memberID == null}">
+<c:if test="${mail == null}">
 	<c:redirect url="login/page" />
        <a href="login/page">
         <i class="tf-ion-android-person"></i>
@@ -39,6 +37,10 @@ String managerID = (String) session.getAttribute("managerID");
 <form action="/MemberPhoto.controller" method="POST">
 <input name="mail" value="${mail}"type="text">
 	<button type="submit" class="btn btn-primary" align="center">會員大頭貼</button>
+</form>
+<form action="/MemberNewUpdateAction.controller" method="POST">
+<input name="mail" value="${mail}"type="text">
+	<button type="submit" class="btn btn-primary" align="center">會員更新資料</button>
 </form>
 </th>
 </tr>

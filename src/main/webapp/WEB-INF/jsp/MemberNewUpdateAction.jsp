@@ -161,7 +161,7 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 <h1></h1>
-<form action="MemberInserSuccess.controller" method="POST" enctype="multipart/form-data">
+<form action="/MemberNewUpdateSuccess.controller" method="POST" enctype="multipart/form-data">
 	<div class="login-wrap">
 	<div class="login-html">
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">會員資料</label>
@@ -169,47 +169,50 @@ a{color:inherit;text-decoration:none}
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="pass" class="label" >Email </label>
-					<input id="Q1" type="text" class="input"  name="mail">
-          <div style="color: #FF0000; font-size: 60%; display: inline">${errors.mail}</div>
+					<label for="pass" class="label" >MemberID </label>
+					<input id="Q1" type="text" class="input"  name="upid" value= ${ memberUpdate.id} readonly >
+          			<div style="color: #FF0000; font-size: 60%; display: inline">${errors.mail}</div>
 				</div>
 				<div class="group">
-					<label for="pass" class="label" >密碼</label>
-					<input id="Q2" type="password" class="input" data-type="password" name="password">
-          <div style="color: #FF0000; font-size: 60%; display: inline">${errors.pwd}</div>
+					<label for="pass" class="label" >Email </label>
+					<input id="Q1" type="text" class="input"  name="mail" value=${ memberUpdate.mail} readonly >
+          			<div style="color: #FF0000; font-size: 60%; display: inline">${errors.mail}</div>
+				</div>
+				<div class="group">
+					<input id="Q2" type="hidden" class="input" data-type="password" name="password" value=${ memberUpdate.password}>
 				</div>
         <div class="group">
 					<label for="pass" class="label" >手機 </label>
-					<input id="Q3" type="text" class="input"  name="phone">
+					<input id="Q3" type="text" class="input"  name="phone" value=${ memberUpdate.phone}>
           <div style="color: #FF0000; font-size: 60%; display: inline">${errors.phone}</div>
 				</div>
 		<div class="group">
 					<label for="pass" class="label" >姓名 </label>
-					<input id="Q4" type="text" class="input"  name="name">
+					<input id="Q4" type="text" class="input"  name="name" value=${ memberUpdate.name}>
           <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.name}</div>
 				</div>
         <div class="group">
 					<label for="pass" class="label" >身分證  </label>
-					<input id="Q5" type="text" class="input"  name="numberID">
+					<input id="Q5" type="text" class="input"  name="numberID" value=${ memberUpdate.numberID}>
           <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.numberID}</div>
 				</div>
         <div class="group">
 					<label for="pass" class="label" >生日 </label>
-					<input id="Q6" type="Date" class="input"  name="birthday">
+					<input id="Q6" type="Date" class="input"  name="birthday" value=${ memberUpdate.birthday}>
           <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.bday}</div>
 				</div>
         <div class="group">
 					<label for="pass" class="label" >住址 </label>
-					<input id="Q7" type="text" class="input"  name="address">
+					<input id="Q7" type="text" class="input"  name="address" value=${ memberUpdate.address}>
           <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.address}</div>
 				</div>
         <div class="group">
 					<label for="pass" class="label" >性別(選填) </label>
-					<input id="Q8" type="text" class="input"  name="gender">
+					<input id="Q8" type="text" class="input"  name="gender" value=${ memberUpdate.gender}>
           <div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.gender}</div>
 				</div>
 				<div class="group">
-					<input type="submit" class="button" value="送出">
+					<input type="submit" class="button" value="確認修改送出" name="up">
 				</div>
 				<div class="hr"></div>
 			</div>
@@ -217,88 +220,22 @@ a{color:inherit;text-decoration:none}
 	</div>
 </div>
 </form>
-<table border="1" align="center">
-  <thead>
-    <tr bgcolor='#D9FFFF'>
-      <th height="60" colspan="2" align="center">自動填入商品資料</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr bgcolor='#D9FFFF'>
-      <td width="600" height="40" align="center">
-        <button class="C1" style="width: 100px; height: 30px;">資料1</button>
-        <button class="C2" style="width: 100px; height: 30px;">資料2</button>
-        <button class="C3" style="width: 100px; height: 30px;">資料3</button>
-        <button class="C4" style="width: 100px; height: 30px;">資料4</button>
-        <button class="C5" style="width: 100px; height: 30px;">資料5</button>
-      </td>
-    </tr>
-  <tbody>
-</table>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	//自動填入資料
 	$(document).ready(function() {
-		$(".C1").click(function() {
-			$("#Q1").val('BruceLee@gmail.com');
-			$("#Q2").val('Bybn5vcs');
-			$("#Q3").val('0935299335');
-			$("#Q4").val('李小龍');
-			$("#Q5").val('F12345678');
-			$("#Q6").val('2020-11-29');
-			$("#Q7").val('新北市');
-			$("#Q8").val('男');
+		$("input[name='up']").click(function() {
+			var yes = confirm('確認更新資料嗎？');
+
+			if (yes) {
+				alert('更新成功');
+			} else {
+				this.form.action = "/MemberNewUpdateAction.controller";
+				alert('取消更新');
+			}
 		})
 	});
-	$(document).ready(function() {
-		$(".C2").click(function() {
-			$("#Q1").val('mark34177@gmail.com');
-			$("#Q2").val('qazwsx');
-			$("#Q3").val('0953579487');
-			$("#Q4").val('海綿寶寶');
-			$("#Q5").val('S239712291');
-			$("#Q6").val('2020-10-29');
-			$("#Q7").val('深海大鳳梨');
-			$("#Q8").val('男');
-		})
-	});
-	$(document).ready(function() {
-		$(".C3").click(function() {
-			$("#Q1").val('jeff520sine@gmail.com');
-			$("#Q2").val('NhU64tYR');
-			$("#Q3").val('0927639144');
-			$("#Q4").val('歌集啦');
-			$("#Q5").val('L283481161');
-			$("#Q6").val('2020-9-29');
-			$("#Q7").val('美國洛杉磯');
-			$("#Q8").val('男');
-		})
-	});
-	$(document).ready(function() {
-		$(".C4").click(function() {
-			$("#Q1").val('QQ4@gmail.com');
-			$("#Q2").val('exW9CpkC');
-			$("#Q3").val('0939974588');
-			$("#Q4").val('瑪莉歐');
-			$("#Q5").val('B188632455');
-			$("#Q6").val('2020-9-29');
-			$("#Q7").val('馬力歐星球');
-			$("#Q8").val('男');
-		})
-	});
-	$(document).ready(function() {
-		$(".C5").click(function() {
-			$("#Q1").val('QQ5@gmail.com');
-			$("#Q2").val('b5T794cn');
-			$("#Q3").val('0910523887');
-			$("#Q4").val('喵喵怪');
-			$("#Q5").val('S244267954');
-			$("#Q6").val('1990-10-29');
-			$("#Q7").val('LineWord');
-			$("#Q8").val('不明');
-		})
-	});
-	
 </script>
 </html>

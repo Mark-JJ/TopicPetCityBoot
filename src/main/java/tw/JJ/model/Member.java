@@ -56,6 +56,17 @@ public class Member {
 		this.address = address;
 		this.gender = gender;
 	}
+	public Member(int id,String mail,  String phone, String name, String numberID, String birthday,
+			String address, String gender) {
+		this.id = id;
+		this.mail = mail;
+		this.phone = phone;
+		this.name = name;
+		this.numberID = numberID;
+		this.birthday = birthday;
+		this.address = address;
+		this.gender = gender;
+	}
 
 	public Member(int id,String mail, String password) {
 		this.id = id;
