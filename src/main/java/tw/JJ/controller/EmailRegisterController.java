@@ -30,6 +30,7 @@ public class EmailRegisterController {
 	String contextPath ;
 	final String requestPath = "/confirmedMail";
 	final String requestPath2 = "/confirmedMail2";
+	final String requestPath3 = "/confirmedMail3";
 	                             
 	
 	IEmailSenderService senderService;
@@ -153,5 +154,57 @@ public class EmailRegisterController {
 		mService.update(mb);
 		session.removeAttribute("randomCode");
 		return "/mail/MemberForgetSuccess";
+	}
+	
+	//修改mail
+	@GetMapping("/MemberEmailUpdatePage.controller")
+	public String MemberEmailUpdatePage(Model model) {
+		
+		return "/mail/MemberEmailUpdatePage";
+	}
+	@PostMapping("/MemberEmailUpdateAction.controller")
+	public String MemberEmailUpdateAction(Model model, HttpSession session, 
+			@RequestParam String emailAddress) {
+		// 註冊的前置作業，你要自行完成
+		// 假設前端會送一Email Address來後端，本範例將假設放在參數：emailAddress內
+		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
+		if (map == null) {
+			map = new HashMap<>();
+			session.setAttribute("randomCode", map);
+		}
+		RandomString rs = new RandomString(50);
+		String random = rs.nextString();
+		map.put(random, random);
+		String link = "http://localhost:8082" + contextPath + requestPath3 + "/" + random;
+		senderService.sendEmail(emailAddress, "修改Email", "請於30分鐘內按下列超連結: " + 
+		        link + "<br>");
+		session.setAttribute("updatemail", emailAddress);
+		
+		return "/mail/MemberEmailUpdatePage";
+	}
+	@GetMapping("/confirmedMail3/{random}")
+	public String confirm3(Model model, HttpSession session, 
+			@PathVariable String random) {
+		String result = null;
+		Map<String, String> map = (Map<String, String>) session.getAttribute("randomCode");
+		if (map == null) {
+			result = "電子郵件地址認證失敗，Session不存在";
+		} else {
+			String value = map.get(random);
+			if (value != null && value.equals(random) ) {
+				result = "電子郵件地址認證成功，random=" + random ;
+				String upmail = (String)session.getAttribute("updatemail");
+				String mail = (String)session.getAttribute("mail");
+				System.out.println("&&&&&&"+upmail);
+				System.out.println("&&&&&&"+mail);
+				Member mb = mService.findBymail(mail);
+				mb.setMail(upmail);
+				mService.update(mb);
+				session.setAttribute("mail", upmail);
+			}
+		}
+		System.out.println("result=" + result);
+		model.addAttribute("result", result);
+		return "/mail/MemberEmailUpdateSuccess";
 	}
 }

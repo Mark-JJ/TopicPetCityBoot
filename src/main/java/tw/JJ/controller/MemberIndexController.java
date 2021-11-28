@@ -24,7 +24,10 @@ import tw.JJ.model.MemberService;
 public class MemberIndexController {
 	@Autowired
 	private MemberService mService;
-	
+	@GetMapping(path = "/ikk.controller")
+	public String memberIndex2() {
+		return "newIKK";
+	}
 	@GetMapping(path = "/MemberIndex.controller")
 	public String memberIndex() {
 		return "MemberIndex";

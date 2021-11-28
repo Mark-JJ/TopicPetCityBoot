@@ -46,7 +46,7 @@ padding: 30px
 </tr>
 <tr bgcolor='#CECEFF'>
 	<th>
-	<a href="<c:url value='/MemberPhoto.controller' />"><h2>會員大頭貼</h2></a><br>
+	<a href="<c:url value='/MemberEmailUpdatePage.controller' />"><h2>修改mail</h2></a><br>
 	<a href="<c:url value='/MemberInserPage.controller' />"><h2>新增會員資料</h2></a><br>
 	<a href="<c:url value='/MemberUpdatePage.controller' />"><h2>更新會員資料</h2></a><br>
 	<a href="<c:url value='/MemberDeletePage.controller' />"><h2>刪除會員資料</h2></a><br>
