@@ -23,6 +23,13 @@ public class MemberService {
 		}
 		return oa.get();
 	}
+	public Boolean findBymail2(String mail){
+		Optional<Member> oa = mPos.findBymail(mail);
+		if(oa.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 	public List<Member> findAll() {
 		return mPos.findAll();
 	}

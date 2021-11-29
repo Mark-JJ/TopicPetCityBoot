@@ -51,8 +51,8 @@ public class MemberInserController {
 			errors.put("mail", "請輸入Email");
 		}else {
 			if(mail!=null) {
-				Member checkmb = mService.findBymail(mail);
-				if(checkmb!=null) {
+				Boolean checkmb = mService.findBymail2(mail);
+				if(checkmb==true) {
 					errors.put("mail", "該Email已有人使用，請重新輸入");
 				}
 			}
