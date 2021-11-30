@@ -26,7 +26,7 @@ public class MemberIndexController {
 	private MemberService mService;
 	@GetMapping(path = "/ikk.controller")
 	public String memberIndex2() {
-		return "newIKK";
+		return "IKK";
 	}
 	@GetMapping(path = "/MemberIndex.controller")
 	public String memberIndex() {

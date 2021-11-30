@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 ikk
+<jsp:include page="template.jsp"></jsp:include>
 </body>
 </html>
